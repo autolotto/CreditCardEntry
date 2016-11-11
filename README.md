@@ -118,6 +118,9 @@ In code:
 
 # Version History
 
+###11/11/2016
+ - Added CardTypeChangeCallback interface.
+
 ###9/17/2015
  - Changed how the ZipCodeText is validating zip codes so it will work with other countries.
  - fix for `isCreditCardValid()` returning `true` when it is not

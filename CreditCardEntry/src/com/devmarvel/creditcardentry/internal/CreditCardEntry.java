@@ -44,6 +44,7 @@ import com.devmarvel.creditcardentry.fields.ExpDateText;
 import com.devmarvel.creditcardentry.fields.SecurityCodeText;
 import com.devmarvel.creditcardentry.fields.ZipCodeText;
 import com.devmarvel.creditcardentry.library.CardType;
+import com.devmarvel.creditcardentry.library.CardTypeChangeCallback;
 import com.devmarvel.creditcardentry.library.CardValidCallback;
 import com.devmarvel.creditcardentry.library.CreditCard;
 
@@ -79,6 +80,7 @@ public class CreditCardEntry extends HorizontalScrollView implements
     private boolean scrolling = false;
 
     private CardValidCallback onCardValidCallback;
+    private CardTypeChangeCallback onCardTypeChangeCallback;
 
     @SuppressWarnings("deprecation")
     public CreditCardEntry(Context context, boolean includeExp, boolean includeSecurity, boolean includeZip, AttributeSet attrs, @SuppressWarnings("UnusedParameters") int style) {
@@ -209,6 +211,7 @@ public class CreditCardEntry extends HorizontalScrollView implements
         cardImage.setImageResource(type.frontResource);
         backCardImage.setImageResource(type.backResource);
         updateCardImage(false);
+        if (onCardTypeChangeCallback != null) onCardTypeChangeCallback.changedCardType(type);
     }
 
     @Override
@@ -559,6 +562,10 @@ public class CreditCardEntry extends HorizontalScrollView implements
 
     public void setOnCardValidCallback(CardValidCallback onCardValidCallback) {
         this.onCardValidCallback = onCardValidCallback;
+    }
+
+    public void setOnCardTypeChangeCallback(CardTypeChangeCallback onCardTypeChangeCallback) {
+        this.onCardTypeChangeCallback = onCardTypeChangeCallback;
     }
 
     @Override

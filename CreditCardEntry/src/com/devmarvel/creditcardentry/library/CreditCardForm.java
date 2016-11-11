@@ -166,6 +166,10 @@ public class CreditCardForm extends RelativeLayout {
 		entry.setOnCardValidCallback(callback);
 	}
 
+	public void setOnCardTypeChangeCallback(CardTypeChangeCallback callback) {
+		entry.setOnCardTypeChangeCallback(callback);
+	}
+
 	/**
 	 * all internal components will be attached this same focus listener
 	 */

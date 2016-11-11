@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.devmarvel.creditcardentry.library.CardType;
+import com.devmarvel.creditcardentry.library.CardTypeChangeCallback;
 import com.devmarvel.creditcardentry.library.CardValidCallback;
 import com.devmarvel.creditcardentry.library.CreditCard;
 import com.devmarvel.creditcardentry.library.CreditCardForm;
@@ -33,6 +35,13 @@ public class MainActivity extends Activity {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				Log.d(TAG, v.getClass().getSimpleName() + " " + (hasFocus ? "gained" : "lost") + " focus. card valid: " + noZipForm.isCreditCardValid());
+			}
+		});
+
+		noZipForm.setOnCardTypeChangeCallback(new CardTypeChangeCallback() {
+			@Override
+			public void changedCardType(CardType type) {
+				Toast.makeText(MainActivity.this, "Card type changed -> " + type.name, Toast.LENGTH_SHORT).show();
 			}
 		});
 
