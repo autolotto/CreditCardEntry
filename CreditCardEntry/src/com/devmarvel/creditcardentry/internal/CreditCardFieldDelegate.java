@@ -11,6 +11,10 @@ import com.devmarvel.creditcardentry.library.CardType;
  * TODO gut this delegate business
  */
 public interface CreditCardFieldDelegate {
+
+  // When bin is changed
+  void onBinChange(String bin);
+
   // When the card type is identified
   void onCardTypeChange(CardType type);
 

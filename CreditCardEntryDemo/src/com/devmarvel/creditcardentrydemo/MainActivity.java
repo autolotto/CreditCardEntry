@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.devmarvel.creditcardentry.library.BinChangeCallback;
 import com.devmarvel.creditcardentry.library.CardType;
 import com.devmarvel.creditcardentry.library.CardTypeChangeCallback;
 import com.devmarvel.creditcardentry.library.CardValidCallback;
@@ -42,6 +43,13 @@ public class MainActivity extends Activity {
 			@Override
 			public void changedCardType(CardType type) {
 				Toast.makeText(MainActivity.this, "Card type changed -> " + type.name, Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		noZipForm.setOnBinChangeCallback(new BinChangeCallback() {
+			@Override
+			public void changedBin(String bin) {
+				Toast.makeText(MainActivity.this, "Bin changed -> " + bin, Toast.LENGTH_SHORT).show();
 			}
 		});
 

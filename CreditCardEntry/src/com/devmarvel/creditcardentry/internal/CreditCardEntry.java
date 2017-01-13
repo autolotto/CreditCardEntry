@@ -43,6 +43,7 @@ import com.devmarvel.creditcardentry.fields.CreditEntryFieldBase;
 import com.devmarvel.creditcardentry.fields.ExpDateText;
 import com.devmarvel.creditcardentry.fields.SecurityCodeText;
 import com.devmarvel.creditcardentry.fields.ZipCodeText;
+import com.devmarvel.creditcardentry.library.BinChangeCallback;
 import com.devmarvel.creditcardentry.library.CardType;
 import com.devmarvel.creditcardentry.library.CardTypeChangeCallback;
 import com.devmarvel.creditcardentry.library.CardValidCallback;
@@ -81,6 +82,7 @@ public class CreditCardEntry extends HorizontalScrollView implements
 
     private CardValidCallback onCardValidCallback;
     private CardTypeChangeCallback onCardTypeChangeCallback;
+    private BinChangeCallback onBinChangeCallback;
 
     @SuppressWarnings("deprecation")
     public CreditCardEntry(Context context, boolean includeExp, boolean includeSecurity, boolean includeZip, AttributeSet attrs, @SuppressWarnings("UnusedParameters") int style) {
@@ -212,6 +214,11 @@ public class CreditCardEntry extends HorizontalScrollView implements
         backCardImage.setImageResource(type.backResource);
         updateCardImage(false);
         if (onCardTypeChangeCallback != null) onCardTypeChangeCallback.changedCardType(type);
+    }
+
+    @Override
+    public void onBinChange(String bin) {
+        if (onBinChangeCallback != null) onBinChangeCallback.changedBin(bin);
     }
 
     @Override
@@ -447,6 +454,11 @@ public class CreditCardEntry extends HorizontalScrollView implements
             }
 
             @Override
+            public void onBinChange(String bin) {
+                delegate.onBinChange(bin);
+            }
+
+            @Override
             public void onCreditCardNumberValid(String remainder) {
                 updateLast4();
             }
@@ -566,6 +578,10 @@ public class CreditCardEntry extends HorizontalScrollView implements
 
     public void setOnCardTypeChangeCallback(CardTypeChangeCallback onCardTypeChangeCallback) {
         this.onCardTypeChangeCallback = onCardTypeChangeCallback;
+    }
+
+    public void setOnBinChangeCallback(BinChangeCallback onBinChangeCallback) {
+        this.onBinChangeCallback = onBinChangeCallback;
     }
 
     @Override

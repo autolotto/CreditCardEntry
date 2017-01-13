@@ -118,6 +118,9 @@ In code:
 
 # Version History
 
+###1/13/2017
+ - Added BinChangeCallback interface.
+
 ###11/11/2016
  - Added CardTypeChangeCallback interface.
 

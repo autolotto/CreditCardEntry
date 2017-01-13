@@ -41,6 +41,11 @@ public class CreditCardText extends CreditEntryFieldBase {
 	@Override
 	public void afterTextChanged(Editable s) {
 		String number = s.toString();
+
+		if (number.length() >= CreditCardUtil.CC_LEN_FOR_BIN) {
+			delegate.onBinChange(number);
+		}
+
 		if (number.length() >= CreditCardUtil.CC_LEN_FOR_TYPE) {
 			formatAndSetText(number);
 		} else {

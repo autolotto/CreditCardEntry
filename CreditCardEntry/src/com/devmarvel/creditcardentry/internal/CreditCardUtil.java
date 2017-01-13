@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 @SuppressLint("SimpleDateFormat")
 public class CreditCardUtil {
 	public static final int CC_LEN_FOR_TYPE = 4; // number of characters to determine length
+	public static final int CC_LEN_FOR_BIN = 6; // number of characters to determine length
 	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/yyyy");
 	static {
 		simpleDateFormat.setLenient(false);
